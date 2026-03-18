@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Многокутники: Навчальний Портал</title>
+    <title>Многокутники: Майстер-клас</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,6 +14,7 @@
             --text: #f8fafc;
             --text-dim: #94a3b8;
             --error: #ef4444;
+            --info: #3b82f6;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +28,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
         }
@@ -43,16 +44,15 @@
         }
 
         h1 {
-            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             color: var(--accent);
-            margin-bottom: 45px;
+            margin-bottom: 50px;
             text-shadow: 0 0 20px var(--accent-glow);
-            text-transform: uppercase;
         }
 
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             width: 100%;
         }
@@ -73,28 +73,20 @@
         .nav-card:hover {
             transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 0 35px var(--accent-glow);
+            box-shadow: 0 0 30px var(--accent-glow);
         }
 
         .nav-card .icon { font-size: 3.5rem; }
-        .nav-card span {
-            font-weight: 800;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
+        .nav-card span { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* СТИЛІ РОЗДІЛІВ */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.6s ease-out;
-        }
+        /* СТИЛІ ТЕОРІЇ */
+        .content-section { display: none; animation: fadeIn 0.5s ease-out; }
 
         .header-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             padding-bottom: 20px;
             border-bottom: 2px solid #334155;
         }
@@ -103,90 +95,94 @@
             background: transparent;
             color: var(--accent);
             border: 2px solid var(--accent);
-            padding: 10px 20px;
-            border-radius: 12px;
+            padding: 10px 25px;
+            border-radius: 14px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 800;
             transition: 0.3s;
         }
 
-        .btn-back:hover {
-            background: var(--accent);
-            color: #000;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+        .btn-back:hover { background: var(--accent); color: #000; }
 
-        .block {
+        .theory-content { display: grid; gap: 30px; }
+
+        .theory-block {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 24px;
-            margin-bottom: 25px;
+            padding: 40px;
+            border-radius: 30px;
             border: 1px solid #334155;
         }
 
-        h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.6rem; }
+        h2 { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+        h3 { font-size: 1.4rem; color: var(--text); margin: 30px 0 15px; border-left: 4px solid var(--accent); padding-left: 15px; }
+
+        ul { list-style: none; margin-bottom: 20px; }
+        li { margin-bottom: 12px; font-size: 1.1rem; }
+        b { color: var(--accent); }
+
+        /* ВІЗУАЛЬНІ СХЕМИ */
+        .visual-schema {
+            background: #0f172a;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px dashed #475569;
+        }
+
+        .schema-item { text-align: center; flex: 1; min-width: 200px; }
+        .shape-placeholder { 
+            width: 120px; height: 120px; margin: 0 auto 15px; 
+            border: 3px solid var(--accent); position: relative;
+        }
+
+        .ruler { width: 140px; height: 10px; background: #fbbf24; position: absolute; transform: rotate(-45deg); top: 20px; left: -10px; opacity: 0.8; }
 
         /* ФОРМУЛИ */
-        .formula-box {
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .formula-card {
             background: rgba(34, 197, 94, 0.1);
-            border-left: 5px solid var(--accent);
-            padding: 20px;
-            margin: 20px 0;
-            font-family: 'Fira Code', monospace;
-            font-size: 1.2rem;
-            color: var(--accent);
-            border-radius: 0 12px 12px 0;
-        }
-
-        /* КАРТКИ В ЖИТТІ */
-        .life-card {
-            border-top: 4px solid var(--accent);
-            margin-bottom: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-        }
-
-        /* ТЕСТИ */
-        .task-card {
-            background: #1e293b;
             padding: 25px;
             border-radius: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #475569;
+            border: 1px solid var(--accent);
+            text-align: center;
         }
 
-        input {
-            width: 100%;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 12px;
-            border: 2px solid #334155;
-            background: #0f172a;
-            color: white;
-            font-size: 1rem;
-            outline: none;
+        .formula-card code {
+            display: block;
+            font-family: 'Fira Code', monospace;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-top: 10px;
         }
 
-        input:focus { border-color: var(--accent); }
-
-        .btn-check {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
+        /* КАРТКИ ЗАДАЧ */
+        .method-card {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 5px solid var(--info);
+            padding: 20px;
+            border-radius: 0 15px 15px 0;
+            margin-bottom: 15px;
         }
-
-        .result { margin-top: 15px; font-weight: 700; text-align: center; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .theory-block { padding: 25px; }
+            .formula-card code { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -195,21 +191,21 @@
 <div class="container">
 
     <div id="home-screen">
-        <h1>Геометрія: Многокутники</h1>
+        <h1>Світ Многокутників</h1>
         <div class="nav-grid">
-            <div class="nav-card" onclick="openNav('theory')">
+            <div class="nav-card" onclick="openSection('theory')">
                 <div class="icon">📜</div>
                 <span>Повна Теорія</span>
             </div>
-            <div class="nav-card" onclick="openNav('life')">
+            <div class="nav-card" onclick="openSection('life')">
                 <div class="icon">💡</div>
                 <span>Геометрія в житті</span>
             </div>
-            <div class="nav-card" onclick="openNav('training')">
-                <div class="icon">✍️</div>
-                <span>Тренувальні задачі</span>
+            <div class="nav-card" onclick="openSection('tasks')">
+                <div class="icon">📝</div>
+                <span>Тренування</span>
             </div>
-            <div class="nav-card" onclick="openNav('blitz')">
+            <div class="nav-card" onclick="openSection('test')">
                 <div class="icon">🏆</div>
                 <span>Бліц-тест</span>
             </div>
@@ -218,141 +214,114 @@
 
     <section id="theory" class="content-section">
         <div class="header-nav">
-            <h2>📜 Повна Теорія</h2>
-            <button class="btn-back" onclick="goHome()">← Назад</button>
+            <h2>📜 Повна Теорія для класу</h2>
+            <button class="btn-back" onclick="goHome()">Назад до меню</button>
         </div>
-        
-        <div class="block">
-            <h3>🔍 Основні поняття</h3>
-            <p><b>Многокутник</b> — це проста замкнена ламана лінія та фігура, яка обмежена цією ламаною.</p>
-            <ul style="margin: 15px 0 15px 25px;">
-                <li><b>Вершини:</b> точки, в яких з'єднуються ланки ламаної.</li>
-                <li><b>Сторони:</b> відрізки (ланки ламаної), що сполучають сусідні вершини.</li>
-                <li><b>Діагональ:</b> відрізок, що сполучає будь-які дві несусідні вершини.</li>
-            </ul>
 
-            <h3>📐 Опуклість</h3>
-            <p>Многокутник називається <b>опуклим</b>, якщо він завжди лежить по один бік від будь-якої прямої, яка містить його сторону.</p>
+        <div class="theory-content">
+            
+            <div class="theory-block">
+                <h3>1. Що таке многокутник? (Основи)</h3>
+                <p><b>Визначення:</b> "Многокутник — це проста замкнена ламана лінія та фігура, обмежена нею".</p>
+                <p style="margin-top: 10px; color: var(--text-dim);">Це плоска фігура, утворена відрізками, які з'єднані послідовно і замикаються в кільце.</p>
 
-            <div class="formula-box">
-                <b>Сума кутів n-кутника:</b><br>
-                S = 180° * (n - 2)
+                <div class="visual-schema">
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);">
+                            <span style="position: absolute; top: -10px; left: 50%; color: #ef4444;">📍</span>
+                            <span style="position: absolute; bottom: 40%; left: 30%; color: #3b82f6; border-top: 2px dashed #3b82f6; width: 40px; transform: rotate(45deg);">🌉</span>
+                        </div>
+                        <p>Елементи: 📍 Вершини, 📏 Сторони, 🌉 Діагоналі</p>
+                    </div>
+                </div>
+
+                <ul>
+                    <li>📍 <b>Вершини:</b> точки, де з'єднуються ланки ламаної.</li>
+                    <li>📏 <b>Сторони:</b> самі відрізки (ланки ламаної).</li>
+                    <li>🌉 <b>Діагоналі:</b> відрізки, що з'єднують дві несусідні вершини.</li>
+                </ul>
+                
+                <div style="background: rgba(34, 197, 94, 0.1); padding: 15px; border-radius: 12px; border: 1px solid var(--accent);">
+                    <b>⚡ Перевірка уваги:</b> Який многокутник має мінімальну кількість сторін? <i>(Відповідь: Трикутник)</i>
+                </div>
             </div>
 
-            <div class="formula-box">
-                <b>Кількість діагоналей:</b><br>
-                d = n(n - 3) / 2
+            <div class="theory-block">
+                <h3>2. Опуклість (Метод лінійки)</h3>
+                <p><b>Визначення:</b> "Многокутник називається опуклим, якщо він лежить по один бік від будь-якої прямої, що містить його сторону".</p>
+
+                <div class="visual-schema">
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="border-radius: 0;">
+                            <div class="ruler"></div>
+                        </div>
+                        <p><b>Опуклий</b><br><small>(Вся фігура з одного боку)</small></p>
+                    </div>
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 70%, 0% 100%);">
+                            <div class="ruler" style="top: 70px; transform: rotate(0deg); width: 100%; left: 0;"></div>
+                        </div>
+                        <p><b>Неопуклий</b><br><small>(Є вм'ятини всередину)</small></p>
+                    </div>
+                </div>
+                <p>Просте пояснення: Якщо прикласти лінійку до будь-якої сторони, вся фігура має бути з одного боку. Якщо пряма лінійки "ріже" фігуру — він неопуклий.</p>
             </div>
 
-            <p>Важливо пам'ятати: <b>Сума зовнішніх кутів</b> будь-якого опуклого многокутника (взятих по одному при кожній вершині) завжди дорівнює <b>360°</b>.</p>
+            <div class="theory-block">
+                <h3>3. Ключові формули</h3>
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <p>Сума кутів n-кутника</p>
+                        <code>180° * (n - 2)</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Кількість діагоналей</p>
+                        <code>n * (n - 3) / 2</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Сума зовнішніх кутів</p>
+                        <code>Завжди 360°</code>
+                    </div>
+                </div>
+            </div>
 
-            <h3 style="margin-top: 25px;">🟦 Властивості площі</h3>
-            <p>Площа — це величина, що має такі властивості:</p>
-            <ol style="margin-left: 25px;">
-                <li><b>Додатність:</b> Площа фігури завжди є додатним числом (S > 0).</li>
-                <li><b>Рівність:</b> Рівні фігури мають рівні площі.</li>
-                <li><b>Адитивність:</b> Якщо фігуру розрізати на частини, то площа цілого дорівнює сумі площ його частин.</li>
-            </ol>
+            <div class="theory-block">
+                <h3>4. Як розв’язувати задачі</h3>
+                <div class="method-card">
+                    <b>🧩 Метод розбиття (Аддитивність):</b>
+                    <p>Якщо фігура складна, її площу можна знайти, розбивши її на простіші частини (трикутники чи прямокутники). Загальна площа — сума їх площ.</p>
+                </div>
+                <div class="method-card">
+                    <b>🔢 Розрахунок діагоналей:</b>
+                    <p>З кожної вершини виходить <b>(n - 3)</b> діагоналей. Оскільки кожна діагональ з'єднує дві вершини, ми ділимо на 2.</p>
+                </div>
+                <div class="method-card">
+                    <b>📐 Метод площ:</b>
+                    <p>Вирази площу фігури двома різними способами (через різні висоти чи сторони) і прирівняй їх. Це допоможе знайти невідомий елемент.</p>
+                </div>
+            </div>
+
+            <div class="theory-block">
+                <h3>5. Властивості площі</h3>
+                <ul>
+                    <li>✅ <b>Додатність:</b> Площа завжди більше нуля (S > 0).</li>
+                    <li>✅ <b>Рівність:</b> У рівних фігур завжди рівні площі.</li>
+                    <li>✅ <b>Аддитивність:</b> Площа цілого дорівнює сумі площ його частин.</li>
+                    <li>✅ <b>Одиниця виміру:</b> За одиницю площі беруть квадрат зі стороною 1.</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
-    <section id="life" class="content-section">
-        <div class="header-nav">
-            <h2>💡 Геометрія в житті</h2>
-            <button class="btn-back" onclick="goHome()">← Назад</button>
-        </div>
-
-        <div class="block">
-            <div class="life-card">
-                <h3>🏠 Ремонт та дизайн</h3>
-                <p>Перед фарбуванням стін або укладанням плитки ми обчислюємо площу поверхонь. Це допомагає точно розрахувати кількість матеріалів і не витрачати зайві кошти на надлишки фарби чи ламінату.</p>
-            </div>
-
-            <div class="life-card">
-                <h3>🚜 Фермерство</h3>
-                <p>Розрахунок площі полів (які часто мають форму складних многокутників) критично важливий для визначення норми висіву насіння та кількості добрив. Від точності геометрії залежить майбутній врожай!</p>
-            </div>
-
-            <div class="life-card">
-                <h3>🏗️ Будівництво</h3>
-                <p>Проєктування сучасних дахів, фундаментів та ландшафтів вимагає знання властивостей многокутників. Це дозволяє створювати міцні конструкції та ефективно використовувати простір.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="training" class="content-section">
-        <div class="header-nav">
-            <h2>✍️ Тренувальні задачі</h2>
-            <button class="btn-back" onclick="goHome()">← Назад</button>
-        </div>
-        <div id="tasks-list">
-            <div class="task-card">
-                <p>1. Знайдіть суму кутів опуклого 7-кутника.</p>
-                <input type="number" id="tr1">
-                <button class="btn-check" onclick="check('tr1', 900)">Перевірити</button>
-                <p id="res-tr1" class="result"></p>
-            </div>
-            <div class="task-card">
-                <p>2. Скільки діагоналей у 8-кутника?</p>
-                <input type="number" id="tr2">
-                <button class="btn-check" onclick="check('tr2', 20)">Перевірити</button>
-                <p id="res-tr2" class="result"></p>
-            </div>
-            <div class="task-card">
-                <p>3. Сума кутів дорівнює 1080°. Скільки сторін у фігури?</p>
-                <input type="number" id="tr3">
-                <button class="btn-check" onclick="check('tr3', 8)">Перевірити</button>
-                <p id="res-tr3" class="result"></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="blitz" class="content-section">
-        <div class="header-nav">
-            <h2>🏆 Бліц-тест для класу</h2>
-            <button class="btn-back" onclick="goHome()">← Назад</button>
-        </div>
-
-        <div class="task-card">
-            <p>1. Скільки сторін у мінімально можливого многокутника?</p>
-            <input type="number" id="b1">
-            <button class="btn-check" onclick="check('b1', 3)">Відповісти</button>
-            <p id="res-b1" class="result"></p>
-        </div>
-
-        <div class="task-card">
-            <p>2. Чи може сума кутів опуклого многокутника бути 100°? (0 - Ні, 1 - Так)</p>
-            <input type="number" id="b2">
-            <button class="btn-check" onclick="check('b2', 0)">Відповісти</button>
-            <p id="res-b2" class="result"></p>
-        </div>
-
-        <div class="task-card">
-            <p>3. Скільки діагоналей можна провести в трикутнику?</p>
-            <input type="number" id="b3">
-            <button class="btn-check" onclick="check('b3', 0)">Відповісти</button>
-            <p id="res-b3" class="result"></p>
-        </div>
-
-        <div class="task-card">
-            <p>4. Чому дорівнює сума зовнішніх кутів будь-якого опуклого n-кутника (в градусах)?</p>
-            <input type="number" id="b4">
-            <button class="btn-check" onclick="check('b4', 360)">Відповісти</button>
-            <p id="res-b4" class="result"></p>
-        </div>
-
-        <div class="task-card">
-            <p>5. Якщо розрізати фігуру на дві, чи зміниться сума їхніх площ відносно початкової? (0 - Ні, 1 - Так)</p>
-            <input type="number" id="b5">
-            <button class="btn-check" onclick="check('b5', 0)">Відповісти</button>
-            <p id="res-b5" class="result"></p>
-        </div>
-    </section>
+    <section id="life" class="content-section"><h2>💡 Геометрія в житті</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
+    <section id="tasks" class="content-section"><h2>📝 Тренувальні задачі</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
+    <section id="test" class="content-section"><h2>🏆 Бліц-тест</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
 
 </div>
 
 <script>
-    function openNav(id) {
+    function openSection(id) {
         document.getElementById('home-screen').style.display = 'none';
         document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
         document.getElementById(id).style.display = 'block';
@@ -362,19 +331,6 @@
     function goHome() {
         document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
         document.getElementById('home-screen').style.display = 'flex';
-    }
-
-    function check(id, correct) {
-        const val = document.getElementById(id).value;
-        const res = document.getElementById('res-' + id);
-        
-        if (val == correct) {
-            res.innerText = "✅ Вірно!";
-            res.style.color = "var(--accent)";
-        } else {
-            res.innerText = "❌ Помилка. Спробуй ще!";
-            res.style.color = "var(--error)";
-        }
     }
 </script>
 
