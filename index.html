@@ -124,23 +124,23 @@
         .visual-schema {
             background: #0f172a;
             border-radius: 20px;
-            padding: 40px;
+            padding: 30px;
             margin: 20px 0;
-            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
             border: 1px dashed #475569;
         }
 
-        .polygon-demo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            position: relative;
-            background: rgba(34, 197, 94, 0.1);
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-            border: 3px solid var(--accent);
+        .schema-item { text-align: center; flex: 1; min-width: 200px; }
+        .shape-placeholder { 
+            width: 120px; height: 120px; margin: 0 auto 15px; 
+            border: 3px solid var(--accent); position: relative;
         }
 
-        .label { position: absolute; font-size: 0.8rem; font-weight: bold; background: var(--bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--accent); }
+        .ruler { width: 140px; height: 10px; background: #fbbf24; position: absolute; transform: rotate(-45deg); top: 20px; left: -10px; opacity: 0.8; }
 
         /* ФОРМУЛИ */
         .formula-grid {
@@ -166,6 +166,7 @@
             margin-top: 10px;
         }
 
+        /* КАРТКИ ЗАДАЧ */
         .method-card {
             background: rgba(59, 130, 246, 0.1);
             border-left: 5px solid var(--info);
@@ -177,6 +178,11 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .theory-block { padding: 25px; }
+            .formula-card code { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -208,7 +214,7 @@
 
     <section id="theory" class="content-section">
         <div class="header-nav">
-            <h2>📜 Повна Теорія</h2>
+            <h2>📜 Повна Теорія для класу</h2>
             <button class="btn-back" onclick="goHome()">Назад до меню</button>
         </div>
 
@@ -217,17 +223,16 @@
             <div class="theory-block">
                 <h3>1. Що таке многокутник? (Основи)</h3>
                 <p><b>Визначення:</b> "Многокутник — це проста замкнена ламана лінія та фігура, обмежена нею".</p>
-                
+                <p style="margin-top: 10px; color: var(--text-dim);">Це плоска фігура, утворена відрізками, які з'єднані послідовно і замикаються в кільце.</p>
+
                 <div class="visual-schema">
-                    <div style="position: relative; width: 220px; height: 220px; margin: 0 auto;">
-                        <div style="width: 100%; height: 100%; background: rgba(34, 197, 94, 0.1); border: 3px solid var(--accent); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
-                        
-                        <div class="label" style="top: -10px; left: 45%;">📍 Вершина</div>
-                        <div class="label" style="top: 50%; right: -20px; transform: rotate(90deg);">📏 Сторона</div>
-                        <div style="position: absolute; top: 20%; left: 25%; width: 50%; height: 2px; background: var(--info); transform: rotate(45deg); border-top: 2px dashed #fff;"></div>
-                        <div class="label" style="top: 35%; left: 30%; border-color: var(--info); color: var(--info);">🌉 Діагональ</div>
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);">
+                            <span style="position: absolute; top: -10px; left: 50%; color: #ef4444;">📍</span>
+                            <span style="position: absolute; bottom: 40%; left: 30%; color: #3b82f6; border-top: 2px dashed #3b82f6; width: 40px; transform: rotate(45deg);">🌉</span>
+                        </div>
+                        <p>Елементи: 📍 Вершини, 📏 Сторони, 🌉 Діагоналі</p>
                     </div>
-                    <p style="margin-top: 20px;"><b>Елементи:</b> 📍 Вершини, 📏 Сторони, 🌉 Діагоналі</p>
                 </div>
 
                 <ul>
@@ -243,28 +248,74 @@
 
             <div class="theory-block">
                 <h3>2. Опуклість (Метод лінійки)</h3>
-                <p>Многокутник називається опуклим, якщо він лежить по один бік від будь-якої прямої, що містить його сторону.</p>
+                <p><b>Визначення:</b> "Многокутник називається опуклим, якщо він лежить по один бік від будь-якої прямої, що містить його сторону".</p>
+
+                <div class="visual-schema">
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="border-radius: 0;">
+                            <div class="ruler"></div>
+                        </div>
+                        <p><b>Опуклий</b><br><small>(Вся фігура з одного боку)</small></p>
+                    </div>
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 70%, 0% 100%);">
+                            <div class="ruler" style="top: 70px; transform: rotate(0deg); width: 100%; left: 0;"></div>
+                        </div>
+                        <p><b>Неопуклий</b><br><small>(Є вм'ятини всередину)</small></p>
+                    </div>
+                </div>
+                <p>Просте пояснення: Якщо прикласти лінійку до будь-якої сторони, вся фігура має бути з одного боку. Якщо пряма лінійки "ріже" фігуру — він неопуклий.</p>
             </div>
 
             <div class="theory-block">
                 <h3>3. Ключові формули</h3>
                 <div class="formula-grid">
-                    <div class="formula-card"><p>Сума кутів</p><code>180° * (n - 2)</code></div>
-                    <div class="formula-card"><p>Діагоналі</p><code>n * (n - 3) / 2</code></div>
-                    <div class="formula-card"><p>Зовнішні кути</p><code>Завжди 360°</code></div>
+                    <div class="formula-card">
+                        <p>Сума кутів n-кутника</p>
+                        <code>180° * (n - 2)</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Кількість діагоналей</p>
+                        <code>n * (n - 3) / 2</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Сума зовнішніх кутів</p>
+                        <code>Завжди 360°</code>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="theory-block">
-                <h3>4. Методи розв’язання та Властивості</h3>
-                <div class="method-card"><b>🧩 Метод розбиття:</b> Розбивай складну фігуру на прості.</div>
-                <div class="method-card"><b>✅ Аддитивність:</b> Площа цілого дорівнює сумі його частин.</div>
+                <h3>4. Як розв’язувати задачі</h3>
+                <div class="method-card">
+                    <b>🧩 Метод розбиття (Аддитивність):</b>
+                    <p>Якщо фігура складна, її площу можна знайти, розбивши її на простіші частини (трикутники чи прямокутники). Загальна площа — сума їх площ.</p>
+                </div>
+                <div class="method-card">
+                    <b>🔢 Розрахунок діагоналей:</b>
+                    <p>З кожної вершини виходить <b>(n - 3)</b> діагоналей. Оскільки кожна діагональ з'єднує дві вершини, ми ділимо на 2.</p>
+                </div>
+                <div class="method-card">
+                    <b>📐 Метод площ:</b>
+                    <p>Вирази площу фігури двома різними способами (через різні висоти чи сторони) і прирівняй їх. Це допоможе знайти невідомий елемент.</p>
+                </div>
             </div>
+
+            <div class="theory-block">
+                <h3>5. Властивості площі</h3>
+                <ul>
+                    <li>✅ <b>Додатність:</b> Площа завжди більше нуля (S > 0).</li>
+                    <li>✅ <b>Рівність:</b> У рівних фігур завжди рівні площі.</li>
+                    <li>✅ <b>Аддитивність:</b> Площа цілого дорівнює сумі площ його частин.</li>
+                    <li>✅ <b>Одиниця виміру:</b> За одиницю площі беруть квадрат зі стороною 1.</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
     <section id="life" class="content-section"><h2>💡 Геометрія в житті</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
-    <section id="tasks" class="content-section"><h2>📝 Тренування</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
+    <section id="tasks" class="content-section"><h2>📝 Тренувальні задачі</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
     <section id="test" class="content-section"><h2>🏆 Бліц-тест</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
 
 </div>
