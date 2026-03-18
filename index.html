@@ -234,14 +234,14 @@
                         <div class="shape-placeholder">
                             <svg viewBox="0 0 120 120">
                                 <polygon points="60,5 115,45 95,115 25,115 5,45"
-                                    fill="none"
-                                    stroke="#22c55e"
-                                    stroke-width="3"/>
+                                fill="none"
+                                stroke="#22c55e"
+                                stroke-width="3"/>
 
                                 <line x1="60" y1="5" x2="95" y2="115"
-                                    stroke="#3b82f6"
-                                    stroke-width="2"
-                                    stroke-dasharray="5,5"/>
+                                stroke="#3b82f6"
+                                stroke-width="2"
+                                stroke-dasharray="5,5"/>
 
                                 <circle cx="60" cy="5" r="4" fill="#ef4444"/>
                                 <circle cx="115" cy="45" r="4" fill="#ef4444"/>
@@ -265,23 +265,93 @@
                 </div>
             </div>
 
+            <!-- ДАЛІ ВСЕ ЗАЛИШЕНО ЯК БУЛО -->
+            
+            <div class="theory-block">
+                <h3>2. Опуклість (Метод лінійки)</h3>
+                <p><b>Визначення:</b> "Многокутник називається опуклим, якщо він лежить по один бік від будь-якої прямої, що містить його сторону".</p>
+
+                <div class="visual-schema">
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="border:3px solid var(--accent);">
+                            <div class="ruler"></div>
+                        </div>
+                        <p><b>Опуклий</b></p>
+                    </div>
+                    <div class="schema-item">
+                        <div class="shape-placeholder" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 70%, 0% 100%); border:3px solid var(--accent);">
+                            <div class="ruler" style="top: 70px; transform: rotate(0deg); width: 100%; left: 0;"></div>
+                        </div>
+                        <p><b>Неопуклий</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theory-block">
+                <h3>3. Ключові формули</h3>
+                <div class="formula-grid">
+                    <div class="formula-card">
+                        <p>Сума кутів n-кутника</p>
+                        <code>180° * (n - 2)</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Кількість діагоналей</p>
+                        <code>n * (n - 3) / 2</code>
+                    </div>
+                    <div class="formula-card">
+                        <p>Сума зовнішніх кутів</p>
+                        <code>Завжди 360°</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theory-block">
+                <h3>4. Як розв’язувати задачі</h3>
+                <div class="method-card">
+                    <b>🧩 Метод розбиття (Аддитивність):</b>
+                    <p>Якщо фігура складна, її площу можна знайти, розбивши її на простіші частини.</p>
+                </div>
+                <div class="method-card">
+                    <b>🔢 Розрахунок діагоналей:</b>
+                    <p>З кожної вершини виходить <b>(n - 3)</b> діагоналей.</p>
+                </div>
+                <div class="method-card">
+                    <b>📐 Метод площ:</b>
+                    <p>Вирази площу фігури двома різними способами.</p>
+                </div>
+            </div>
+
+            <div class="theory-block">
+                <h3>5. Властивості площі</h3>
+                <ul>
+                    <li>✅ <b>Додатність:</b> Площа завжди більше нуля (S > 0).</li>
+                    <li>✅ <b>Рівність:</b> У рівних фігур рівні площі.</li>
+                    <li>✅ <b>Аддитивність:</b> Площа цілого дорівнює сумі площ його частин.</li>
+                    <li>✅ <b>Одиниця виміру:</b> квадрат зі стороною 1.</li>
+                </ul>
+            </div>
+
         </div>
     </section>
+
+    <section id="life" class="content-section"><h2>💡 Геометрія в житті</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
+    <section id="tasks" class="content-section"><h2>📝 Тренувальні задачі</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
+    <section id="test" class="content-section"><h2>🏆 Бліц-тест</h2><button class="btn-back" onclick="goHome()">Назад</button></section>
 
 </div>
 
 <script>
-    function openSection(id) {
-        document.getElementById('home-screen').style.display = 'none';
-        document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
-        window.scrollTo(0, 0);
-    }
+function openSection(id) {
+document.getElementById('home-screen').style.display = 'none';
+document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+document.getElementById(id).style.display = 'block';
+window.scrollTo(0, 0);
+}
 
-    function goHome() {
-        document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
-        document.getElementById('home-screen').style.display = 'flex';
-    }
+function goHome() {
+document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+document.getElementById('home-screen').style.display = 'flex';
+}
 </script>
 
 </body>
